@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-
-
 class Nav extends Component {
   constructor () {
     super()
@@ -27,7 +25,7 @@ class Nav extends Component {
               <div className="card-body">
                 <div className="card-title"><h4>{post.title.rendered}</h4></div>
                 <p className="card-text">{post.excerpt.rendered}</p>
-                <a href={post.link} className="btn btn-primary">Read more</a>
+                <a href={post.link} className="btn btn-outline-primary">Read more</a>
               </div>
             </div>
           </div>
