@@ -20,17 +20,19 @@ class Nav extends Component {
   }
   render() {
      return (
-      <div className="col-xs-12 col-sm-6 col-md-4 post-item mb-5 d-flex align-items-stretch post-list">
+       <div className="row post-item">
         {this.state.posts.map((post) => 
-          <div className="card" key={post.id}>
-            <div className="card-body">
-              <div className="card-title"><h4>{post.title.rendered}</h4></div>
-              <p className="card-text">{post.excerpt.rendered}</p>
-              <a href={post.link} className="btn btn-primary">Read more</a>
+          <div className="col-xs-12 col-sm-6 col-md-4 post-item mb-5 d-flex align-items-stretch">
+            <div className="card" key={post.id}>
+              <div className="card-body">
+                <div className="card-title"><h4>{post.title.rendered}</h4></div>
+                <p className="card-text">{post.excerpt.rendered}</p>
+                <a href={post.link} className="btn btn-primary">Read more</a>
+              </div>
             </div>
           </div>
         )}
-      </div>
+       </div>
     );
   }
 }
