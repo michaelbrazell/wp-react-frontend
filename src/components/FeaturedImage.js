@@ -17,7 +17,7 @@ class FeaturedImage extends Component {
           console.log(error);
         });
       } else {
-        this.setState({featuredItemUrl: 'http://via.placeholder.com/350x150'})
+        this.setState({featuredItemUrl: 'http://via.placeholder.com/348x232'})
       }
   }
   render() {
