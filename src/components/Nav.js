@@ -2,12 +2,32 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 class Nav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      siteInfo: [],
+      url: this.props.baseUrl
+    };
+  }
+  componentDidMount() {
+    const url = `${this.state.url}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          siteInfo: data
+        })
+      )
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            WordPress Theme Name
+            {this.state.siteInfo.name}
           </Link>
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav mr-auto">
@@ -19,6 +39,11 @@ class Nav extends Component {
               <li className="nav-item">
                 <NavLink to="/posts" className="nav-link" activeClassName="active">
                   Posts
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/pages" className="nav-link" activeClassName="active">
+                  Pages
                 </NavLink>
               </li>
             </ul>

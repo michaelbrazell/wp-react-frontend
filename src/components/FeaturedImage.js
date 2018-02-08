@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
 class FeaturedImage extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
-      featuredItemUrl: []
+      featuredItemUrl: [],
+      url: this.props.baseUrl
     }
   }
   componentDidMount () {
-    const mediaUrl = `http://wordpress-api.local/wp-json/wp/v2/media/${this.props.mediaId}`;
+    const mediaUrl = `${this.state.url}wp/v2/media/${this.props.mediaId}`;
     if (this.props.mediaId !== 0) {
       fetch(mediaUrl)
         .then((resp) => resp.json())
