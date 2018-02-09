@@ -9,6 +9,9 @@ This is a simple project of using React to render a front-end for WordPress.  Th
 
 ## To Do's
 1. Plenty
+2. Display posts under posts/:id
+3. Display pages under pagees/:id
+4. Improve content loading
 
 ## Create-react-app documentation & resources
 

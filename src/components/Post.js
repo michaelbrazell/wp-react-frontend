@@ -1,44 +1,36 @@
 import React, { Component } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import ReactHtmlParser from "react-html-parser";
 
 class Post extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-
+  constructor(props) {
+    super(props);
     this.state = {
-      show: false
+      title: 'Foo',
+      content: 'Bar',
+      id: this.props.id,
+      url: this.props.baseUrl
     };
   }
-
-  handleClose() {
-    this.setState({ show: false });
+  componentDidMount() {
+    const url = `${this.state.url}wp/v2/posts/${this.state.id}`;
+    console.log(url)
+    fetch(url)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          title: data.title.rendered,
+          content: data.content.rendered,
+        })
+      )
+      .catch(function(error) {
+        console.log(error);
+      });
   }
-
-  handleShow() {
-    this.setState({ show: true });
-  }
-
   render() {
-     return (
+    return (
       <div>
-        <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-          Read Post
-        </Button>
-
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Post Heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleClose}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+        <h2 className="mb-3">{ReactHtmlParser(this.state.title)}</h2>
+        {ReactHtmlParser(this.state.content)}
       </div>
     );
   }
