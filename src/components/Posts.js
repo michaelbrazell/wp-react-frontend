@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import ReactHtmlParser from "react-html-parser";
 import FeaturedImage from "./FeaturedImage.js";
+import { BeatLoader } from 'react-spinners';
 
 class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
-      url: this.props.baseUrl
+      url: this.props.baseUrl,
+      loading: true,
     };
   }
   componentDidMount() {
@@ -16,7 +18,8 @@ class Posts extends Component {
       .then(response => response.json())
       .then(posts =>
         this.setState({
-          posts: posts
+          posts: posts,
+          loading: false
         })
       )
       .catch(function(error) {
@@ -27,6 +30,12 @@ class Posts extends Component {
     return (
       <div className="post-list">
         <h2 className="mb-3">Posts</h2>
+        <div className="BeatLoader">
+          <BeatLoader
+            color={'#343a40'} 
+            loading={this.state.loading} 
+          />
+        </div>
         <div className="row">
           {this.state.posts.map(post => (
             <div

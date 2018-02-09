@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import { BeatLoader } from 'react-spinners';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       siteInfo: [],
-      url: this.props.baseUrl
+      url: this.props.baseUrl,
+      loading: true
     };
   }
   componentDidMount() {
@@ -14,7 +16,8 @@ class Home extends Component {
       .then(response => response.json())
       .then(data =>
         this.setState({
-          siteInfo: data
+          siteInfo: data,
+          loading: false
         })
       )
       .catch(function(error) {
@@ -24,6 +27,10 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <BeatLoader
+          color={'#343a40'} 
+          loading={this.state.loading} 
+        />
         <h2 className="mb-3">{this.state.siteInfo.description}</h2>
         <p>This is the home</p>
       </div>
