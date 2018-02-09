@@ -1,17 +1,14 @@
 # React front-end for WordPress
-This is a simple project of using React to render a front-end for WordPress.  The app is built with React and is bootstrapped with bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).  The app is styled by Bootstrap 4.
+This is a simple project of using React to render a front-end for WordPress.  The app is built with React and is bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).  The app is styled by Bootstrap 4.
 
 ## Installation
 1. Clone the repository
 2. `$ npm install`
 3. `$ yarn start`
-4. Go to the `/src/components/PostList.js` file and update the const `url` to be your WordPress posts endpoint
-5. Go to the `/src/components/FeaturedImage.s` file and, likewise, update that URL similarly to find your media objects
+4. Go to the `/src/App.js` file and update the value for URL with your base WordPress REST API URL, in this case I'm using a WordPress instance loaded with dummy content at `http://headless-wp.worcesterwebgroup.com/wp-json/`
 
 ## To Do's
 1. Plenty
-2. Set global variables for URL
-3. Add react-router and setup pages pulling specicific endpoints
 
 ## Create-react-app documentation & resources
 
