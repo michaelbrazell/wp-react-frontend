@@ -5,15 +5,15 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Foo',
+      title: 'This is the Default Title',
       content: 'Bar',
-      id: this.props.id,
+      id: this.props.match.params.id,
       url: this.props.baseUrl
     };
+    console.log(this.state.newId);
   }
   componentDidMount() {
     const url = `${this.state.url}wp/v2/posts/${this.state.id}`;
-    console.log(url)
     fetch(url)
       .then(response => response.json())
       .then(data =>

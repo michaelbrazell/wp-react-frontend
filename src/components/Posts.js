@@ -55,7 +55,7 @@ class Posts extends Component {
                   <div className="card-text">
                     {ReactHtmlParser(post.excerpt.rendered)}
                   </div>
-                  <a href={post.link} className="btn btn-outline-primary">
+                  <a href={'/posts/' + post.id} className="btn btn-outline-primary">
                     Read more
                   </a>
                 </div>
