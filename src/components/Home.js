@@ -27,10 +27,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <BeatLoader
-          color={'#343a40'} 
-          loading={this.state.loading} 
-        />
+        {
+          (this.state.loading === true)
+            ? <div className="loading-animation"><BeatLoader color={'#343a40'} /></div> 
+            : undefined
+        }
         <h2 className="mb-3">{this.state.siteInfo.description}</h2>
         <p>This is the home</p>
       </div>

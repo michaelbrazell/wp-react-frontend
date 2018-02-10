@@ -25,7 +25,7 @@ class Nav extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-        <div className="container">
+        <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             {this.state.siteInfo.name}
           </Link>
@@ -44,6 +44,16 @@ class Nav extends Component {
               <li className="nav-item">
                 <NavLink to="/pages" className="nav-link" activeClassName="active">
                   Pages
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/test1" className="nav-link" activeClassName="active">
+                  Test1
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/test2" className="nav-link" activeClassName="active">
+                  Test2
                 </NavLink>
               </li>
             </ul>

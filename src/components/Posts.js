@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import { BeatLoader } from 'react-spinners';
 import ReactHtmlParser from "react-html-parser";
 import FeaturedImage from "./FeaturedImage.js";
-import { BeatLoader } from 'react-spinners';
 
 class Posts extends Component {
   constructor(props) {
@@ -30,12 +30,11 @@ class Posts extends Component {
     return (
       <div className="post-list">
         <h2 className="mb-3">Posts</h2>
-        <div className="BeatLoader">
-          <BeatLoader
-            color={'#343a40'} 
-            loading={this.state.loading} 
-          />
-        </div>
+        {
+          (this.state.loading === true)
+            ? <div className="loading-animation"><BeatLoader color={'#343a40'} /></div> 
+            : undefined
+        }
         <div className="card-columns">
           {this.state.posts.map(post => (
             <div

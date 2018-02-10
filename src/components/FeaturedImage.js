@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { BeatLoader } from 'react-spinners';
 
 class FeaturedImage extends Component {
   constructor (props) {
     super(props)
     this.state = {
       featuredItemUrl: [],
-      url: this.props.baseUrl
+      url: this.props.baseUrl,
+      loading: true
     }
   }
   componentDidMount () {
@@ -13,7 +15,10 @@ class FeaturedImage extends Component {
     if (this.props.mediaId !== 0) {
       fetch(mediaUrl)
         .then((resp) => resp.json())
-        .then((mediaObject) => this.setState({featuredItemUrl: mediaObject.guid.rendered}))
+        .then((mediaObject) => this.setState({
+          featuredItemUrl: mediaObject.guid.rendered,
+          loading: false
+        }))
         .catch(function(error) {
           console.log(error);
         });
@@ -23,7 +28,10 @@ class FeaturedImage extends Component {
   }
   render() {
      return (
-      <img className="card-img-top" src={this.state.featuredItemUrl} alt={this.props.postTitle} />
+      
+      (this.state.loading === true)
+        ? <div className="loading-animation card-image"><BeatLoader color={'#343a40'} /></div>
+        : <img className="card-img-top" src={this.state.featuredItemUrl} alt={this.props.postTitle} />
      ) 
   }
 }
