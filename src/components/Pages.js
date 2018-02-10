@@ -27,10 +27,10 @@ class Pages extends Component {
     return (
       <div className="pages-list">
         <h2 className="mb-3">Pages</h2>
-        <div className="row">
+        <div className="card-columns">
           {this.state.pages.map(page => (
             <div
-              className="col-xs-12 col-sm-6 col-md-4 page-item mb-5 d-flex align-items-stretch"
+              className="page-item"
               key={page.id}
             >
               <div className="card">

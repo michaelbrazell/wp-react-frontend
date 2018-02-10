@@ -36,10 +36,10 @@ class Posts extends Component {
             loading={this.state.loading} 
           />
         </div>
-        <div className="row">
+        <div className="card-columns">
           {this.state.posts.map(post => (
             <div
-              className="col-xs-12 col-sm-6 col-md-4 post-item mb-5 d-flex align-items-stretch"
+              className="post-item"
               key={post.id}
             >
               <div className="card">
