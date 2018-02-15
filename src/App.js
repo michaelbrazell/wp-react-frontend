@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Posts from "./components/Posts";
 import Post from "./components/Post";
 import Pages from "./components/Pages";
+import Page from "./components/Page";
 import TestProp1 from "./components/TestProp1";
 import NoMatch from "./components/NoMatch";
 
@@ -37,7 +38,8 @@ class App extends Component {
                       <Route exact path="/" render={routeProps => <Home baseUrl={this.state.url}/>} />
                       <Route exact path='/posts' render={routeProps => <Posts baseUrl={this.state.url}/>} />
                       <Route path={`/posts/:id`} render={(props) => (<Post baseUrl={this.state.url} {...props} /> )} />
-                      <Route path='/pages' render={routeProps => <Pages baseUrl={this.state.url}/>} />
+                      <Route exact path='/pages' render={routeProps => <Pages baseUrl={this.state.url}/>} />
+                      <Route path={`/pages/:id`} render={(props) => (<Page baseUrl={this.state.url} {...props} /> )} />
                       <Route path='/test1' render={routeProps => <TestProp1 baseUrl={this.state.url}/>} />
                       <Route component={NoMatch}/>
                     </Switch>

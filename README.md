@@ -9,9 +9,9 @@ This is a simple project of using React to render a front-end for WordPress.  Th
 
 ## To Do's
 1. Plenty
-2. Display posts under posts/:id
 3. Display pages under pagees/:id
-4. Improve content loading
+4. Make the loading widget a component that gets its state from a prop in each component
+5. Create a 'utilities' component grouping (for loading widget, others)
 
 ## Create-react-app documentation & resources
 

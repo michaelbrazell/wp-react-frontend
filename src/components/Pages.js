@@ -54,7 +54,7 @@ class Pages extends Component {
                   <div className="card-text">
                     {ReactHtmlParser(page.excerpt.rendered)}
                   </div>
-                  <a href={page.link} className="btn btn-outline-primary">
+                  <a href={'/pages/' + page.id} className="btn btn-outline-primary">
                     Read more
                   </a>
                 </div>
