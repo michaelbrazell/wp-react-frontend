@@ -9,6 +9,7 @@ import Post from "./components/Post";
 import Pages from "./components/Pages";
 import Page from "./components/Page";
 import TestProp1 from "./components/TestProp1";
+import Experiments from "./components/experiments/Experiments";
 import NoMatch from "./components/NoMatch";
 
 class App extends Component {
@@ -26,7 +27,6 @@ class App extends Component {
           <div className="app-wrapper">
             <Nav baseUrl={this.state.url}/>
             <div className="container-fluid">
-              <div>
               <TransitionGroup>
                 <CSSTransition key={location.key} {...props}
                 classNames="fadeTranslate"
@@ -34,19 +34,22 @@ class App extends Component {
                 mountOnEnter={true}
                 unmountOnExit={true}>
                   <section className="fix-container">
-                    <Switch location={location}>
-                      <Route exact path="/" render={routeProps => <Home baseUrl={this.state.url}/>} />
-                      <Route exact path='/posts' render={routeProps => <Posts baseUrl={this.state.url}/>} />
-                      <Route path={`/posts/:id`} render={(props) => (<Post baseUrl={this.state.url} {...props} /> )} />
-                      <Route exact path='/pages' render={routeProps => <Pages baseUrl={this.state.url}/>} />
-                      <Route path={`/pages/:id`} render={(props) => (<Page baseUrl={this.state.url} {...props} /> )} />
-                      <Route path='/test1' render={routeProps => <TestProp1 baseUrl={this.state.url}/>} />
-                      <Route component={NoMatch}/>
-                    </Switch>
+                    <div className="container-fluid">
+                      <Switch location={location}>
+                        <Route exact path="/" render={routeProps => <Home baseUrl={this.state.url}/>} />
+                        <Route exact path='/posts' render={routeProps => <Posts baseUrl={this.state.url}/>} />
+                        <Route path={`/posts/:id`} render={(props) => (<Post baseUrl={this.state.url} {...props} /> )} />
+                        <Route exact path='/pages' render={routeProps => <Pages baseUrl={this.state.url}/>} />
+                        <Route path={`/pages/:id`} render={(props) => (<Page baseUrl={this.state.url} {...props} /> )} />
+                        <Route path='/test1' render={routeProps => <TestProp1 baseUrl={this.state.url}/>} />
+                        <Route path='/experiments' component={Experiments} />
+                        <Route component={NoMatch}/>
+                      </Switch>
+
+                    </div>
                   </section>
                 </CSSTransition>
               </TransitionGroup>
-              </div>
             </div>
           </div>
         )}
