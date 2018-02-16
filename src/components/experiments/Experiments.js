@@ -24,7 +24,25 @@ const problemGroup = [
   },
 ]
 
+// Temporary?
+let newGroup = []
+
 class Experiments extends Component {
+
+  addProblem = (id) => {
+    console.log('this is: ' + id);
+    newGroup.push(id);
+    console.log(newGroup)
+  }
+
+  removeProblem = (id) => {
+    let index = newGroup.indexOf(id);
+    if (index > -1) {
+      newGroup.splice(index, 1);
+    }
+    console.log(newGroup)
+  }
+
   render() {
     return (
       <div className="experiments">
@@ -33,7 +51,11 @@ class Experiments extends Component {
         <div className="row">
           <div className="col-xs-12 col-sm-6">
             <h3>Current Problems</h3>
-            <Problems data={problemGroup} />
+            <Problems 
+              data={problemGroup}
+              addProblem={(id) => this.addProblem(id)}
+              removeProblem={(id) => this.removeProblem(id)}
+            />
           </div>
           <div className="col-xs-12 col-sm-6">
             <h3>New Group Problems</h3>
