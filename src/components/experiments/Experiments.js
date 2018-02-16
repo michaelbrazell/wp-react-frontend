@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Problems from "./Problems";
+import NewGroup from "./NewGroup";
 
 const problemGroup = [
 	{
@@ -24,23 +25,25 @@ const problemGroup = [
   },
 ]
 
-// Temporary?
-let newGroup = []
-
 class Experiments extends Component {
-
-  addProblem = (id) => {
-    console.log('this is: ' + id);
-    newGroup.push(id);
-    console.log(newGroup)
+  constructor() {
+    super();
+    this.state = {
+      newGroupProblems: []
+    }
   }
 
-  removeProblem = (id) => {
-    let index = newGroup.indexOf(id);
+  addProblem = (id, title) => {
+    this.state.newGroupProblems.push({id, title});
+    console.log(this.state.newGroupProblems)
+  }
+
+  removeProblem = (id, title) => {
+    let index = this.state.newGroupProblems.indexOf({id, title});
     if (index > -1) {
-      newGroup.splice(index, 1);
+      this.state.newGroupProblems.splice(index, 1);
     }
-    console.log(newGroup)
+    console.log(this.state.newGroupProblems)
   }
 
   render() {
@@ -53,12 +56,13 @@ class Experiments extends Component {
             <h3>Current Problems</h3>
             <Problems 
               data={problemGroup}
-              addProblem={(id) => this.addProblem(id)}
-              removeProblem={(id) => this.removeProblem(id)}
+              addProblem={(id, title) => this.addProblem(id, title)}
+              removeProblem={(id, title) => this.removeProblem(id, title)}
             />
           </div>
           <div className="col-xs-12 col-sm-6">
             <h3>New Group Problems</h3>
+            <NewGroup problems={this.state.newGroupProblems} />
           </div>
         </div>
     	</div>

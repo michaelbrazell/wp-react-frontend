@@ -9,12 +9,15 @@ This is a simple project of using React to render a front-end for WordPress.  Th
 
 ## To Do's
 1. Plenty
-3. Display pages under pagees/:id
 4. Make the loading widget a component that gets its state from a prop in each component
 5. Create a 'utilities' component grouping (for loading widget, others)
 
-## Create-react-app documentation & resources
+## Notes
+I'm lazy and I've also included some experimental work I'm doing in the components/experiments/ folder, and I didn't feel like creating a new app for it.
+Remove components/experiments/ directory, and remove the experiments router from App.js.
 
+## Create-react-app documentation & resources
+THis was taken fromn the create-react-app official documentation, I didn't write this, but a lot of it is helpful.
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 

@@ -1,27 +1,27 @@
 import React, { Component } from "react";
 
-class Problems extends Component {
+class NewGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      problems: problemGroup
+      problems: this.props.problems
     }
   }
 
-  deleteProblem = (id, e) => {
-    e.preventDefault();
-    console.log('this is: ' + id);
-    // newGroup.push(id);
-    // console.log(newGroup)
-  }
-
   render() {
+    console.log(this.state.problems)
     return (
       <div className="group-items">        
-        Foo
+        {this.state.problems.map(problem => ( 
+        	<div className="row" id={problem.id} key={problem.id}>
+            <div className="col">
+              {problem.id}
+            </div>
+          </div>  	
+        ))}
     	</div>
     );
   }
 }
 
-export default Problems;
+export default NewGroup;

@@ -9,7 +9,7 @@ class Problems extends Component {
       problems: this.props.data
     }
   }
-  
+
   render() {
     return (
       <div className="group-items">        
@@ -19,10 +19,10 @@ class Problems extends Component {
               {problem.id}. {problem.title}
             </div>
             <div className="col">
-              <button onClick={() => this.props.addProblem(problem.id)}>Add</button>
+              <button onClick={() => this.props.addProblem(problem.id, problem.title)}>Add</button>
             </div>
             <div className="col">
-              <button onClick={() => this.props.removeProblem(problem.id)}>Remove</button>
+              <button onClick={() => this.props.removeProblem(problem.id, problem.title)}>Remove</button>
             </div>
           </div>  	
         ))}
