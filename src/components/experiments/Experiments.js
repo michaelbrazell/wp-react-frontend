@@ -53,12 +53,18 @@ class Experiments extends Component {
     let newGroupProblemArray = this.state.newGroupProblems.filter(function(el) {
       return el.id !== id;
     });
-    console.log(newGroupProblemArray)
+    
+    // this should work but there's something annoying about async state updates...
+    this.setState = {
+      newGroupProblems: newGroupProblemArray
+    }
+    
+    // console.log(newGroupProblemArray)
     // this.setState({ newGroupProblems: newGroupProblemArray })
 
-    this.setState({ newGroupProblems: newGroupProblemArray }, () => {
-      console.log('updated state value', this.state.newGroupProblems)
-    })
+    // this.setState({ newGroupProblems: newGroupProblemArray }, () => {
+    //   console.log('updated state value', this.state.newGroupProblems)
+    // })
 
     // console.log(this.state.newGroupProblems)
   }
