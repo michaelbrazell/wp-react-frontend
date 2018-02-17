@@ -34,16 +34,33 @@ class Experiments extends Component {
   }
 
   addProblem = (id, title) => {
-    this.state.newGroupProblems.push({id, title});
+    let newGroupProblemArray = this.state.newGroupProblems.push({id, title});
+    this.setState = {
+      newGroupProblems: newGroupProblemArray
+    }
     console.log(this.state.newGroupProblems)
+    this.forceUpdate() // Shouldn't need to run force update... setState should auto render...
   }
 
   removeProblem = (id, title) => {
-    let index = this.state.newGroupProblems.indexOf({id, title});
-    if (index > -1) {
-      this.state.newGroupProblems.splice(index, 1);
-    }
-    console.log(this.state.newGroupProblems)
+    /*
+      NewGroupProblemArray is working... but I'm not able to set the state... it's just ignoring it.
+      HAs something to do with setState being asychronous, but seems weird.  Works fine with addProblem()
+      Some suggestions included adding a callback, but then it returns _setState() is not a function
+      so it seems like `this` is not bound to it correctly... Might need to investigate adding a .bind somewhere
+      Have no ides why this would work up above but not work here... Makes no sense
+    */
+    let newGroupProblemArray = this.state.newGroupProblems.filter(function(el) {
+      return el.id !== id;
+    });
+    console.log(newGroupProblemArray)
+    // this.setState({ newGroupProblems: newGroupProblemArray })
+
+    this.setState({ newGroupProblems: newGroupProblemArray }, () => {
+      console.log('updated state value', this.state.newGroupProblems)
+    })
+
+    // console.log(this.state.newGroupProblems)
   }
 
   render() {
@@ -57,12 +74,14 @@ class Experiments extends Component {
             <Problems 
               data={problemGroup}
               addProblem={(id, title) => this.addProblem(id, title)}
-              removeProblem={(id, title) => this.removeProblem(id, title)}
             />
           </div>
           <div className="col-xs-12 col-sm-6">
             <h3>New Group Problems</h3>
-            <NewGroup problems={this.state.newGroupProblems} />
+            <NewGroup 
+              problems={this.state.newGroupProblems} 
+              removeProblem={(id, title) => this.removeProblem(id, title)} 
+            />
           </div>
         </div>
     	</div>

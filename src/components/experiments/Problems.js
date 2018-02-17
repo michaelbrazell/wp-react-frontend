@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-// let newGroup = []
-
 class Problems extends Component {
   constructor(props) {
     super(props);
@@ -19,10 +17,7 @@ class Problems extends Component {
               {problem.id}. {problem.title}
             </div>
             <div className="col">
-              <button onClick={() => this.props.addProblem(problem.id, problem.title)}>Add</button>
-            </div>
-            <div className="col">
-              <button onClick={() => this.props.removeProblem(problem.id, problem.title)}>Remove</button>
+              <button className="float-right" onClick={() => this.props.addProblem(problem.id, problem.title)}>Add</button>
             </div>
           </div>  	
         ))}
