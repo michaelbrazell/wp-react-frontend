@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Problems from "./Problems";
 import NewGroup from "./NewGroup";
-import styles from "./experiments.css";
+// import styles from "./experiments.css";
 
 const problemGroup = [
 	{
@@ -30,44 +30,34 @@ class Experiments extends Component {
   constructor() {
     super();
     this.state = {
+      problems: problemGroup,
       newGroupProblems: []
     }
   }
 
   addProblem = (id, title) => {
     let newGroupProblemArray = this.state.newGroupProblems.push({id, title});
-    this.setState = {
+    this.setState = ({
       newGroupProblems: newGroupProblemArray
-    }
-    console.log(this.state.newGroupProblems)
-    this.forceUpdate() // Shouldn't need to run force update... setState should auto render...
+    })
+    this.forceUpdate()
   }
 
   removeProblem = (id, title) => {
     /*
-      NewGroupProblemArray is working... but I'm not able to set the state... it's just ignoring it.
-      HAs something to do with setState being asychronous, but seems weird.  Works fine with addProblem()
-      Some suggestions included adding a callback, but then it returns _setState() is not a function
-      so it seems like `this` is not bound to it correctly... Might need to investigate adding a .bind somewhere
-      Have no ides why this would work up above but not work here... Makes no sense
+      This makes an array from our newGroupProblems in state
+      The index variable maps through newGroupProblems, and funds the id of the item that was clicked
+      The array is then spliced by that index
+      State is set of the new array without that item.
+      Improve: Probably don't need to pass title anymore
     */
-    let newGroupProblemArray = this.state.newGroupProblems.filter(function(el) {
-      return el.id !== id;
-    });
-    
-    // this should work but there's something annoying about async state updates...
-    this.setState = {
-      newGroupProblems: newGroupProblemArray
-    }
-    
-    // console.log(newGroupProblemArray)
-    // this.setState({ newGroupProblems: newGroupProblemArray })
-
-    // this.setState({ newGroupProblems: newGroupProblemArray }, () => {
-    //   console.log('updated state value', this.state.newGroupProblems)
-    // })
-
-    // console.log(this.state.newGroupProblems)
+    let array = this.state.newGroupProblems;
+    let index = this.state.newGroupProblems.map(function(e) { return e.id; }).indexOf(id);
+    array.splice(index, 1);
+    this.setState = ({
+      newGroupProblems: array 
+    })
+    this.forceUpdate()
   }
 
   render() {
@@ -79,7 +69,7 @@ class Experiments extends Component {
           <div className="col-xs-12 col-sm-6">
             <h3>Current Problems</h3>
             <Problems 
-              data={problemGroup}
+              data={this.state.problems}
               addProblem={(id, title) => this.addProblem(id, title)}
             />
           </div>
@@ -92,32 +82,6 @@ class Experiments extends Component {
           </div>
         </div>
         <hr />
-        <div className="row">
-          <div className="col">
-            <h3>Testing CSS Modules</h3>
-            <div className="row">
-              <div className="col-xs-12 col-sm-6">
-                <h4>Panel with basic styling</h4>
-                <div className="panel panel-defaul">
-                  <div className="panel-body">
-                    <h4>Default Panel</h4>
-                    <p>Some panel content.  This did not work as expected but I still think it's local to this componnent.</p>
-                    {console.log(styles)}
-                  </div>
-                </div>
-              </div>
-              <div className="col-xs-12 col-sm-6">
-                <h4>Panel with styling using CSS modules</h4>
-                <div className="panel">
-                  <div className="panel-body">
-                    <h4>Custom Panel</h4>
-                    <p>Some panel content</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
     	</div>
     );
   }
